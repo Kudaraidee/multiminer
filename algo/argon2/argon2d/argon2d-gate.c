@@ -383,8 +383,8 @@ void argon2d16000_hash( void *output, const void *input )
 	argon2_ctx( &context, Argon2_d );
 }
 
-int scanhash_argon2d16000( struct work *work, uint32_t max_nonce,
-                      uint64_t *hashes_done, struct thr_info *mythr )
+int scanhash_argon2d16000( int thr_id, struct work *work, uint32_t max_nonce,
+                           uint64_t *hashes_done)
 {
    uint32_t _ALIGN(64) edata[20];
    uint32_t _ALIGN(64) hash[8];
