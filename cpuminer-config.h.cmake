@@ -25,11 +25,11 @@
 #cmakedefine HAVE_CUDA 1
 #cmakedefine HAVE_OPENCL 1
 
-#define PACKAGE "multiminer"
+#define PACKAGE "multiminer-Kudaraidee"
 #define PACKAGE_BUGREPORT ""
-#define PACKAGE_NAME "multiminer"
-#define PACKAGE_STRING "multiminer 1.0"
-#define PACKAGE_TARNAME "multiminer"
+#define PACKAGE_NAME "multiminer-Kudaraidee"
+#define PACKAGE_STRING "multiminer-Kudaraidee 1.0"
+#define PACKAGE_TARNAME "multiminer-Kudaraidee"
 #define PACKAGE_URL ""
 #define PACKAGE_VERSION "1.0.0.0"
 

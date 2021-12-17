@@ -44,5 +44,10 @@ bool init_thread_argon2d_crds(int thr_id);
 int scanhash_argon2d_crds_gpu( int thr_id, struct work *work, uint32_t max_nonce,
 							  uint64_t *hashes_done );
 
+//  = 0x10, m_cost = 16000.
+bool init_thread_argon2d16000(int thr_id);
+int scanhash_argon2d16000_gpu( int thr_id, struct work *work, uint32_t max_nonce,
+							  uint64_t *hashes_done );
+
 #endif
 
