@@ -3028,9 +3028,6 @@ void update_dev_pool_info(const char *dev_id) {
     if (json_is_object(data)) {
         char *coin_entry = "";
         switch (opt_algo) {
-            case ALGO_ARGON2D250:
-                coin_entry = "zumy";
-                break;
             case ALGO_ARGON2D500:
                 coin_entry = "dynamic";
                 break;
@@ -3178,7 +3175,7 @@ int main(int argc, char *argv[]) {
         show_usage_and_exit(1);
     }
 
-    if (use_gpu != NULL && opt_algo != ALGO_ARGON2D4096 && opt_algo != ALGO_ARGON2D500 && opt_algo != ALGO_ARGON2D250 && opt_algo != ALGO_ARGON2D16000) {
+    if (use_gpu != NULL && opt_algo != ALGO_ARGON2D4096 && opt_algo != ALGO_ARGON2D500 && opt_algo != ALGO_ARGON2D16000) {
         fprintf(stderr, "%s: GPU can only be used with argon2i and argon2d algos.\n", argv[0]);
         show_usage_and_exit(1);
     }
