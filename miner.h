@@ -498,6 +498,7 @@ enum algos {
         ALGO_ARGON2D250,
         ALGO_ARGON2D500,
         ALGO_ARGON2D4096,
+        ALGO_ARGON2D16000,
 //        ALGO_AXIOM,
         ALGO_BASTION,
         ALGO_BLAKE,       
