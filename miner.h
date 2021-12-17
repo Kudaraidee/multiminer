@@ -583,6 +583,7 @@ static const char* const algo_names[] = {
 		"argon2d4096",
 		"argon2d4096-gpu",
         "argon2d16000",
+        "argon2d16000-gpu",
 //        "axiom",
         "bastion",
         "blake",
