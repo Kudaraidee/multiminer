@@ -415,12 +415,18 @@ int scanhash_argon2d16000( struct work *work, uint32_t max_nonce,
 
 bool register_argon2d16000_algo( algo_gate_t* gate )
 {
-        gate->scanhash = (void*)&scanhash_argon2d16000;
-        gate->hash = (void*)&argon2d16000_hash;
+   if(use_gpu == NULL) {
+			gate->scanhash = (void *) &scanhash_argon2d16000;
+			gate->hash = (void *) &argon2d16000_hash;
+		}
+		else {
+			gate->miner_thread_pre_init = (void *) &init_thread_argon2d16000;
+			gate->scanhash = (void *) &scanhash_argon2d16000_gpu;
+		}
+        gate->set_target = (void*)&scrypt_set_target;
         gate->optimizations = SSE2_OPT | AVX2_OPT | AVX512_OPT;
-        opt_target_factor = 65536.0;
         return true;
-}
+  }
 
 int scanhash_argon2d16000_gpu(int thr_id, struct work *work, uint32_t max_nonce,
 							 uint64_t *hashes_done) {
