@@ -1,21 +1,21 @@
-# multiminer
+# a.multiminer
 
-Dev Fee
--------
+Fork Preface
+------------
 
-In order to support development, this miner has 1% dev fee included - 
-1 minute from 100 minutes it will mine for developer. Dev fee will only
-be activated if you mine using GPU, as I only added support for that.
-If you mine using CPU, no dev fee is added.
+a.multiminer is a fork of the multiminer created by bogdanadnan 
+with added support for the algorithm Argon2d16000 used by Alterdot 
+and without the dev fee as no further development has been done by the initial developer for over 2 years.
+
+The rest of this README is left mostly untouched, as it was left by its creator.
 
 Description
-----------
+------------
 
-multiminer is a fork of cpuminer-opt by Jay D Dee. 
-(https://github.com/JayDDee/cpuminer-opt)
+multiminer is a fork of cpuminer-opt by Jay D Dee. (https://github.com/JayDDee/cpuminer-opt)
 
 I've added support for GPU mining a couple of Argon2D coins:
-Zumy/Credits (argon2d250), Dynamic (argon2d500), Argentum/Unitus (argon2d4096) and Alterdot (argon2d16000) .
+Zumy/Credits (argon2d250), Dynamic (argon2d500) and Argentum/Unitus (argon2d4096).
 Support for UraniumX (argon2ad) was also added and is in beta testing, with a lot of
 hashrate optimizations for other algos. (**please checkout beta branch to use it - 
 keep in mind that it might not be stable tough**)
@@ -98,11 +98,11 @@ sudo update-alternatives --config g++
 ```
 3. Clone the repository:
 ```sh
-git clone http://github.com/Kudaraidee/multiminer
+git clone http://github.com/bogdanadnan/multiminer
 ```
 Or to clone beta branch (for latest improvements):
 ```sh
-git clone -b beta http://github.com/Kudaraidee/multiminer
+git clone -b beta http://github.com/bogdanadnan/multiminer
 ```
 4. Build the source code:
 ```sh
@@ -133,12 +133,12 @@ number of threads started on each card you have. You will have to play with thre
 batchsize numbers to get best hashrate. Please note that batchsize is required to get a
 normal speed. It should be given in powers of 2 (though that is not mandatory, but is better).
 The batchsize represents the number of hashes calculated by the card in a call. Threads multiplied
-by batchsize multiplied by argon2d memory requirements (250KB for Zumy, 500KB for Dynamic
-and 4096KB for Argentum/Unitus) should not exceed available card memory.
+by batchsize multiplied by argon2d memory requirements (16000 KiB for Alterdot, 250KiB for Zumy, 500KiB for Dynamic
+and 4096KiB for Argentum/Unitus) should not exceed available card memory.
 Sample command line:
 
 ```sh
-./multiminer -a argon2d250 -o stratum+tcp://pooladdress:port -u walletaddress -p c=ZMY,workername --use-gpu CUDA -t 4 --gpu-batchsize 2048
+./multiminer -a argon2d16000 -o stratum+tcp://pooladdress:port -u walletaddress -p c=ADOT,workername --use-gpu CUDA -t 2 --gpu-batchsize 64
 ```
 
 When using OpenCL keep in mind that the program will take a LOT of time to start
@@ -155,7 +155,7 @@ Supported Algorithms
                           argon2d250    argon2d-crds, Credits (CRDS) & Zumy (ZMY)
                           argon2d500    argon2d-dyn,  Dynamic (DYN)
                           argon2d4096   argon2d-uis, Unitus, (UIS)
-                          argon2d16000  argon2d16000, Alterdot, (ADOT)
+                          argon2d16000  argon2d-adot, Alterdot (ADOT)\n\
                           argon2ad      UraniumX, (URX) - in beta
                           axiom         Shabal-256 MemoHash
                           bastion
