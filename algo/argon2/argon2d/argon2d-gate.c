@@ -38,7 +38,7 @@ void argon2d_crds_hash( void *output, const void *input )
 	context.lanes = 1;    // Degree of Parallelism
 	context.threads = 1;  // Threads
 	context.t_cost = 1;   // Iterations
-        context.version = ARGON2_VERSION_10;
+    context.version = ARGON2_VERSION_10;
 
 	argon2_ctx( &context, Argon2_d );
 }
