@@ -123,7 +123,7 @@ bool init_thread_argon2d_dyn_gpu(int thr_id) {
 }
 
 bool init_thread_argon2d_crds_gpu(int thr_id) {
-	return init_thread_argon2d(thr_id, ARGON2_D, ARGON2_VERSION_10, new Argon2Params(32, nullptr, 0, nullptr, 0, nullptr, 0, 1, 250, 4));
+	return init_thread_argon2d(thr_id, ARGON2_D, ARGON2_VERSION_10, new Argon2Params(32, nullptr, 0, nullptr, 0, nullptr, 0, 1, 16000, 1));
 }
 
 bool init_thread_argon2d16000_gpu(int thr_id) {
