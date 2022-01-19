@@ -86,7 +86,7 @@ Follow the tutorial on the page to update the system packages.
 
 3. Go to Windows environment variables and the msys64/mingw64/bin folder (usually C:/msys64/mingw64/bin) to your path.
 
-4. Download the a.multiminer source code and unzip it. Create a folder named build inside. Open a command prompt and navigate to the build folder. Before we can compile we need to make a few changes to the source code:
+4. Download the multiminer-kudaraidee source code and unzip it. Create a folder named build inside. Open a command prompt and navigate to the build folder. Before we can compile we need to make a few changes to the source code:
     
     Edit file CMakeLists.txt.
 
@@ -101,11 +101,11 @@ Follow the tutorial on the page to update the system packages.
 
     Go to line 313 and change:
     ```sh
-    target_compile_options(a.multiminer PRIVATE -O3 -mtune=native -march=native -I.)
+    target_compile_options(multiminer PRIVATE -O3 -mtune=native -march=native -I.)
     ```
     to 
     ```sh
-    target_compile_options(a.multiminer PRIVATE -O1 -mtune=native -march=native -I.)
+    target_compile_options(multiminer PRIVATE -O1 -mtune=native -march=native -I.)
     ```
     Now go back to command prompt and make sure you are in the build folder created earlier.
     ```sh
@@ -161,7 +161,7 @@ sudo update-alternatives --config g++
 ```
 3. Clone the repository:
 ```sh
-git clone http://github.com/Alterdot/a.multiminer
+git clone https://github.com/Kudaraidee/multiminer
 ```
 4. Build the source code:
 ```sh
