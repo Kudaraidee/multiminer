@@ -1,9 +1,9 @@
-# a.multiminer
+# multiminer-kudaraidee
 
 Fork Preface
 ------------
 
-a.multiminer is a fork of the multiminer created by bogdanadnan 
+multiminer-kudaraidee is a fork of the multiminer created by bogdanadnan 
 with added support for the algorithm Argon2d16000 used by Alterdot 
 and without the dev fee as no further development has been done by the initial developer for over 2 years.
 
@@ -51,7 +51,7 @@ MacOS, OSx and Android are not supported.
 
 Windows Building Process
 ---------------------
-The following instructions have been supplied by frozen80 from the Alterdot community and they can be used to compile a.multiminer for Windows with OpenCL only. It will work for both Nvidia and AMD cards. CUDA support can be enabled on Linux for now.
+The following instructions have been supplied by frozen80 from the Alterdot community and they can be used to compile multiminer-kudaraidee for Windows with OpenCL only. It will work for both Nvidia and AMD cards. CUDA support can be enabled on Linux for now.
 
 1. Download MSYS2 from here https://www.msys2.org/ and install the necessary tools. 
 Follow the tutorial on the page to update the system packages.
