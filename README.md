@@ -113,7 +113,7 @@ Follow the tutorial on the page to update the system packages.
     make -j 4
     ```
 
-4. Your a.multiminer.exe file should be available in the build folder.
+4. Your multiminer.exe file should be available in the build folder.
 
 Linux Building Process
 ---------------------
