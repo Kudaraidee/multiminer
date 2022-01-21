@@ -16,8 +16,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-      with:
-        ref: ${{ github.event.release.tag_name }}
+
     - name: Install required dependencies
       run: sudo apt-get install git cmake gcc g++ libjansson-dev libcurl4-openssl-dev libssl-dev libgmp-dev ocl-icd-opencl-dev
 
@@ -27,7 +26,5 @@ jobs:
     - name: Build
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
 
-    - uses: ./
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
+
       
