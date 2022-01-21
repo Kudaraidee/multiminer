@@ -1,5 +1,5 @@
 name: CMake
-sudo apt-get install git cmake gcc g++ libjansson-dev libcurl4-openssl-dev libssl-dev libgmp-dev ocl-icd-opencl-dev  
+
 on:
   push:
     branches: [ master ]
