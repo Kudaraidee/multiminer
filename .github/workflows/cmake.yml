@@ -1,5 +1,5 @@
 name: CMake
-
+sudo apt-get install git cmake gcc g++ libjansson-dev libcurl4-openssl-dev libssl-dev libgmp-dev ocl-icd-opencl-dev  
 on:
   push:
     branches: [ master ]
@@ -20,6 +20,19 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Install required dependencies
+      run: sudo apt-get install git cmake gcc g++ libjansson-dev libcurl4-openssl-dev libssl-dev libgmp-dev ocl-icd-opencl-dev
+
+    - name: Install CUDA toolkit
+      run: sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 10
+           sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 20
+
+           sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 10
+           sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 20
+
+           sudo update-alternatives --config gcc
+           sudo update-alternatives --config g++
+
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
       # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
@@ -27,11 +40,7 @@ jobs:
 
     - name: Build
       # Build your program with the given configuration
-      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+      run: make
 
-    - name: Test
-      working-directory: ${{github.workspace}}/build
-      # Execute tests defined by the CMake configuration.  
-      # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
-      run: ctest -C ${{env.BUILD_TYPE}}
+
       
