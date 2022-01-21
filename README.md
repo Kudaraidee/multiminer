@@ -1,4 +1,4 @@
-# multiminer-kudaraidee
+# multiminer-kudaraidee [![ubuntu](https://github.com/Kudaraidee/multiminer/actions/workflows/cmake.yml/badge.svg)](https://github.com/Kudaraidee/multiminer/actions/workflows/cmake.yml)
 
 Fork Preface
 ------------
