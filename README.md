@@ -165,7 +165,7 @@ git clone https://github.com/Kudaraidee/multiminer
 ```
 4. Build the source code:
 ```sh
-cd a.multiminer
+cd multiminer
 mkdir build
 cd build
 cmake ..
@@ -197,7 +197,7 @@ and 4096KiB for Argentum/Unitus) should not exceed available card memory.
 Sample command line:
 
 ```sh
-./a.multiminer -a argon2d16000 -o stratum+tcp://pooladdress:port -u walletaddress -p c=ADOT,workername --use-gpu CUDA -t 2 --gpu-batchsize 64
+./multiminer -a argon2d16000 -o stratum+tcp://pooladdress:port -u walletaddress -p c=ADOT,workername --use-gpu CUDA -t 2 --gpu-batchsize 64
 ```
 
 When using OpenCL keep in mind that the program will take a LOT of time to start
