@@ -49,7 +49,7 @@ MacOS, OSx and Android are not supported.
 
 3. Stratum pool. Some algos may work wallet mining using getwork or GBT. YMMV.
 
-Windows Building Process
+Windows Building Process (OPENCL)
 ---------------------
 The following instructions have been supplied by frozen80 from the Alterdot community and they can be used to compile multiminer-kudaraidee for Windows with OpenCL only. It will work for both Nvidia and AMD cards. CUDA support can be enabled on Linux for now.
 
@@ -86,35 +86,60 @@ Follow the tutorial on the page to update the system packages.
 
 3. Go to Windows environment variables and the msys64/mingw64/bin folder (usually C:/msys64/mingw64/bin) to your path.
 
-4. Download the multiminer-kudaraidee source code and unzip it. Create a folder named build inside. Open a command prompt and navigate to the build folder. Before we can compile we need to make a few changes to the source code:
-    
-    Edit file CMakeLists.txt.
-
-    Uncomment these lines after line 4 (delete the #):
+4. Download the multiminer-kudaraidee source code and unzip it. Create a folder named build inside. Open a command prompt and navigate to the build folder. Before we can compile we need to make a few changes to the source code
+   
+5.   Now go back to command prompt and make sure you are in the build folder created earlier.
     ```sh
-    set(DEPRECATION_FLAGS "-Xlinker --allow-multiple-definition -Wno-error=deprecated")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${DEPRECATION_FLAGS}")
-    set(C_DEP_FLAGS "-Wno-pointer-sign -Wno-pointer-to-int-cast")
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${C_DEP_FLAGS}")
-    set(NO_CUDA TRUE)
-    ```
-
-    Go to line 313 and change:
-    ```sh
-    target_compile_options(multiminer PRIVATE -O3 -mtune=native -march=native -I.)
-    ```
-    to 
-    ```sh
-    target_compile_options(multiminer PRIVATE -O1 -mtune=native -march=native -I.)
-    ```
-    Now go back to command prompt and make sure you are in the build folder created earlier.
-    ```sh
-    cmake .. -G "MinGW Makefiles"
+    cmake .. -Wno-dev -DNO_CUDA=TRUE -G "MinGW Makefiles"
     make -j 4
     ```
+6. Your multiminer.exe file should be available in the build folder.
 
-4. Your multiminer.exe file should be available in the build folder.
+Windows Building Process (CUDA)
+This is step by step tutorial to compile libmm_gpu_gate.dll with CUDA support for Windows
 
+1. Install Chocolatey(the package manager for Windows)
+Open a PowerShell console with admin rights and enter this command:
+```sh
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+```
+Close the shell and reopen it again with admin rights
+
+2. Install Visual Studio Build Tools, VC Tools, CUDA v10.2 and OpenSSL(this step might take a while)
+```sh
+choco install visualstudio2019buildtools -> Answer: A
+choco install visualstudio2019-workload-vctools -> Answer: A
+choco install cuda --version=10.2.89.20191206 -> Answer: A
+(Make sure you have enough space as this package is big, 2.44 GB. This will also install another display driver if you have Nvidia cards on the system, so be careful and reinstall your favorite driver, if you don't want that)
+setx CUDA_TOOLKIT_ROOT_DIR 'C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2' /m
+choco install openssl
+setx OPENSSL_ROOT_DIR 'C:\Program Files\OpenSSL-Win64' /m
+```
+Check the installed packages with: ```sh choco list -lo ```
+3. Open a MinGW x64 console and navigate to multiminer folder. Here, create a new folder build_vs and navigate inside it: 
+```sh
+mkdir build_vs && cd build_vs
+```
+Depending where you installed MSYS2(Ex: C:\msys2) enter the following command:
+```sh
+cmake .. -DCMAKE_BUILD_TYPE=Release -Wno-dev -DNO_CUDA=FALSE -DJANSSON_LIBRARIES="c:\msys64\mingw64\lib\libjansson.dll.a" -DCURL_LIBRARY="c:\msys64\mingw64\lib\libcurl.dll.a" -DGMP_LIBRARIES="c:\msys64\mingw64\lib\libgmp.dll.a" -DOpenCL_LIBRARY="C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.2/lib/x64/OpenCL.lib" -G "Visual Studio 16 2019" -A x64
+```
+then build the library:
+```sh
+'/C/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/MSBuild/Current/Bin/MSBuild.exe' multiminer.sln -target:mm_gpu_gate -p:Configuration=Release
+```
+rename the library 
+```sh
+mv mm_gpu_gate.dll libmm_gpu_gate.dll
+```
+If everything is ok you should find a library named libmm_gpu_gate.dll in the folder. Copy libmm_gpu_gate.dll to the first build folder(the one without CUDA support and where a.multiminer.exe is located) and overwrite the previous version of the library(the new size is bigger). Test if everything it's ok:
+```sh
+multiminer -V
+```
+Start the miner with CUDA support: 
+```sh
+multiminer.exe -a argon2d16000 -o stratum+tcp://pool.address:port -u wallet.worker -p c=ADOT --gpu-id=1 --gpu-batchsize=64 --use-gpu=CUDA -t 2
+```
 Linux Building Process
 ---------------------
 
