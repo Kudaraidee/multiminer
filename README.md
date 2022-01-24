@@ -91,11 +91,12 @@ Follow the tutorial on the page to update the system packages.
 5.   Now go back to command prompt and make sure you are in the build folder created earlier.
     ```sh
     cmake .. -Wno-dev -DNO_CUDA=TRUE -G "MinGW Makefiles"
-    make -j 4
+    make 
     ```
 6. Your multiminer.exe file should be available in the build folder.
 
 Windows Building Process (CUDA)
+---------------------
 This is step by step tutorial to compile libmm_gpu_gate.dll with CUDA support for Windows
 
 1. Install Chocolatey(the package manager for Windows)
