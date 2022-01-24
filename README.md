@@ -108,10 +108,12 @@ Close the shell and reopen it again with admin rights
 
 2. Install Visual Studio Build Tools, VC Tools, CUDA v10.2 and OpenSSL(this step might take a while)
 ```sh
-choco install visualstudio2019buildtools -> Answer: A
+choco install visualstudio2019buildtools  -> Answer: A
 choco install visualstudio2019-workload-vctools -> Answer: A
 choco install cuda --version=10.2.89.20191206 -> Answer: A
+```
 (Make sure you have enough space as this package is big, 2.44 GB. This will also install another display driver if you have Nvidia cards on the system, so be careful and reinstall your favorite driver, if you don't want that)
+```sh
 setx CUDA_TOOLKIT_ROOT_DIR 'C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.2' /m
 choco install openssl
 setx OPENSSL_ROOT_DIR 'C:\Program Files\OpenSSL-Win64' /m
