@@ -175,7 +175,7 @@ argon2_gpu_hasher_thread *get_gpu_thread_data(int thr_id) {
 	return thread_data;
 }
 
-std::string join_ids(const vector<int>& ids) {
+std::string join_ids(const std::vector<int>& ids) {
 	std::ostrstream dest;
 	for (int i = 0; i < ids.size(); i++) {
 		dest << "#" << (ids[i] + 1) << ((i < (ids.size() - 1)) ? ", " : "");
