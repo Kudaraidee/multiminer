@@ -2757,6 +2757,7 @@ static void show_credits() {
     printf("\n         **********  "PACKAGE_NAME" "PACKAGE_VERSION"  *********** \n");
     printf("     A CPU/GPU miner with multi algo support and optimized for CPUs\n");
     printf("     with AES_NI and AVX2 and SHA extensions.\n\n");
+    printf("     >>>>> RainbowMiner Edition https://rbminer.net <<<<<\n\n");
 }
 
 bool check_cpu_capability() {
