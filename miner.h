@@ -492,14 +492,15 @@ uint32_t* get_stratum_job_ntime();
 
 enum algos {
         ALGO_NULL,
-        ALGO_0X10,
+        ALGO_0X10,        
         ALGO_ALLIUM,
         ALGO_ANIME,
         ALGO_ARGON2,
         ALGO_ARGON2D250,
         ALGO_ARGON2D500,
         ALGO_ARGON2D4096,
-		ALGO_ARGON2D16000,
+        ALGO_ARGON2D16000,
+        ALGO_ARGON2AD,
 //        ALGO_AXIOM,
         ALGO_BASTION,
         ALGO_BLAKE,       
@@ -583,7 +584,8 @@ static const char* const algo_names[] = {
         "argon2d250",
         "argon2d500",
 		"argon2d4096",
-		"argon2d16000",
+    "argon2d16000",
+		"argon2ad",
 //        "axiom",
         "bastion",
         "blake",
@@ -675,7 +677,7 @@ extern int opt_timeout;
 extern "C" {
 #endif
 extern char *use_gpu;
-extern char* gpu_id;
+extern char *gpu_id;
 extern int gpu_batch_size;
 #ifdef __cplusplus
 }
@@ -736,6 +738,7 @@ Options:\n\
 						  argon2d500    argon2d-dyn, Dynamic (DYN)\n\
 						  argon2d4096   argon2d-uis, Unitus (UIS)\n\
 						  argon2d16000  argon2d-adot, Alterdot (ADOT)\n\
+						  argon2ad      argon2ad-urx, UraniumX (URX)\n\
 						  axiom         Shabal-256 MemoHash\n\
 						  bastion\n\
 						  blake         blake256r14 (SFR)\n\
@@ -854,8 +857,8 @@ Options:\n\
 	  --max-rate=N[KMG] Only mine if net hashrate is less than specified value\n\
 	  --max-diff=N      Only mine if net difficulty is less than specified value\n\
 	  --use-gpu=CUDA|OPENCL Use GPU for algorithms supporting it (Argon2d)\n\
-      --gpu-id=N1,N2    Use GPU devices with specific indexes in detected devices\n\
-                        default use all devices\n\
+	  --gpu-id=N1,N2    Use GPU devices with specific indexes in detected devices\n\
+						  default use all devices\n\
 	  --gpu-batchsize=N Specify batch size - default 1\n\
 	  -c, --config=FILE load a JSON-format configuration file\n\
 	  -V, --version     display version information and exit\n\

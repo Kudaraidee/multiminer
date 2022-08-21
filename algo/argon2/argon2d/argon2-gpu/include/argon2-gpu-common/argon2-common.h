@@ -21,6 +21,15 @@ enum Version {
     ARGON2_VERSION_13 = 0x13,
 };
 
+enum CoinAlgo {
+	None = 0,
+	Crds = 1,
+	Dyn = 2,
+	Arg = 3,
+	Urx = 4,
+  Adot = 5
+};
+
 } // namespace argon2
 
 
