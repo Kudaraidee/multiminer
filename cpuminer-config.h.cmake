@@ -25,21 +25,21 @@
 #cmakedefine HAVE_CUDA 1
 #cmakedefine HAVE_OPENCL 1
 
-#define PACKAGE "multiminer-kudaraidee"
+#define PACKAGE "multiminer-rbm"
 #define PACKAGE_BUGREPORT ""
-#define PACKAGE_NAME "multiminer-kudaraidee"
-#define PACKAGE_STRING "multiminer-kudaraidee 1.0.2"
-#define PACKAGE_TARNAME "multiminer-kudaraidee"
-#define PACKAGE_URL "https://github.com/Kudaraidee/multiminer"
-#define PACKAGE_VERSION "1.0.2"
+#define PACKAGE_NAME "multiminer-rbm"
+#define PACKAGE_STRING "multiminer-rbm 1.2"
+#define PACKAGE_TARNAME "multiminer-rbm"
+#define PACKAGE_URL "https://github.com/RainbowMiner/multiminer"
+#define PACKAGE_VERSION "1.2.0"
 
 #define STDC_HEADERS 1
 
 #define USE_ASM 1
-#define USE_AVX 0
-#define USE_AVX2 0
+#define USE_AVX 1
+#define USE_AVX2 1
 
 #define USE_INT128 1
 #define USE_XOP 1
 
-#define VERSION "1.0.1"
+#define VERSION "1.2.0"

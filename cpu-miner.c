@@ -96,7 +96,7 @@ bool allow_mininginfo = true;
 bool use_syslog = false;
 bool use_colors = true;
 char *use_gpu = NULL;
-char* gpu_id = NULL;
+char *gpu_id = NULL;
 int gpu_batch_size = 1;
 static bool opt_background = false;
 bool opt_quiet = false;
@@ -2479,11 +2479,11 @@ void parse_arg(int key, char *arg) {
             } else
                 hp = ap;
             if (ap != arg) {
-                if (strncasecmp(arg, "http://", 7) 
-					&& strncasecmp(arg, "https://", 8) 
-					&& strncasecmp(arg, "stratum+tcp://", 14)
-					&& strncasecmp( arg, "stratum+tcps://", 15 )) 
-				{
+                if (strncasecmp(arg, "http://", 7) &&
+                    strncasecmp(arg, "https://", 8) &&
+                    strncasecmp(arg, "stratum+tcp://", 14) &&
+                    strncasecmp(arg, "stratum+tcps://", 15) &&
+                    strncasecmp(arg, "stratum+ssl://", 14)) {
                     fprintf(stderr, "unknown protocol -- '%s'\n", arg);
                     show_usage_and_exit(1);
                 }
@@ -2757,7 +2757,7 @@ static void show_credits() {
     printf("\n         **********  "PACKAGE_NAME" "PACKAGE_VERSION"  *********** \n");
     printf("     A CPU/GPU miner with multi algo support and optimized for CPUs\n");
     printf("     with AES_NI and AVX2 and SHA extensions.\n\n");
-    printf("     >>>>> RainbowMiner Edition https://rbminer.net <<<<<\n\n");
+    printf("     RainbowMiner Edition https://rbminer.net\n\n");    
 }
 
 bool check_cpu_capability() {
@@ -3047,7 +3047,7 @@ void switch_pool(pool_connection_data *pool) {
 
 void get_defconfig_path(char *out, size_t bufsize, char *argv0);
 
-int check_gpu_capability(char* _use_gpu, char* _gpu_id, int _gpu_batch_size, int threads);
+int check_gpu_capability(char *_use_gpu, char *_gpu_id, int _gpu_batch_size, int threads);
 
 int gpu_device_count;
 
@@ -3091,7 +3091,7 @@ int main(int argc, char *argv[]) {
         show_usage_and_exit(1);
     }
 
-    if (use_gpu != NULL && opt_algo != ALGO_ARGON2D16000 && opt_algo != ALGO_ARGON2D4096 && opt_algo != ALGO_ARGON2D500 && opt_algo != ALGO_ARGON2D250) {
+    if (use_gpu != NULL && opt_algo != ALGO_ARGON2D16000 && opt_algo != ALGO_ARGON2D4096 && opt_algo != ALGO_ARGON2D500 && opt_algo != ALGO_ARGON2D250 && opt_algo != ALGO_ARGON2AD) {
         fprintf(stderr, "%s: GPU can only be used with argon2i and argon2d algos.\n", argv[0]);
         show_usage_and_exit(1);
     }
@@ -3136,10 +3136,10 @@ int main(int argc, char *argv[]) {
             return 1;
     }
 
-	if(use_gpu != NULL) {
-		gpu_device_count = check_gpu_capability(use_gpu, gpu_id, gpu_batch_size, opt_n_threads);
-	}
-	
+  	if(use_gpu != NULL) {
+      gpu_device_count = check_gpu_capability(use_gpu, gpu_id, gpu_batch_size, opt_n_threads);
+    }
+  
     if ((use_gpu == NULL && !check_cpu_capability()) || (use_gpu != NULL && gpu_device_count <= 0)) {
         fprintf(stderr, "No supported mining device (CPU/GPU) available.\n");
         exit(1);
@@ -3160,12 +3160,14 @@ int main(int argc, char *argv[]) {
     pthread_mutex_init(&stratum.sock_lock, NULL);
     pthread_mutex_init(&stratum.work_lock, NULL);
 
-     flags = CURL_GLOBAL_ALL;
-   if ( !opt_benchmark )
-     if ( strncasecmp( rpc_url, "https:", 6 )
-       && strncasecmp( rpc_url, "stratum+tcps://", 15 ) )
-         flags &= ~CURL_GLOBAL_SSL;
-		 
+    flags = CURL_GLOBAL_ALL;
+    
+    if (!opt_benchmark)
+      if (strncasecmp(rpc_url,"https:",6) &&
+          strncasecmp(rpc_url,"stratum+tcps://",15) &&
+          strncasecmp(rpc_url,"stratum+ssl://",14))
+          flags &= ~CURL_GLOBAL_SSL;
+
     if (curl_global_init(flags)) {
         applog(LOG_ERR, "CURL initialization failed");
         return 1;
@@ -3321,6 +3323,11 @@ int main(int argc, char *argv[]) {
             applog(LOG_ERR, "thread %d create failed", i);
             return 1;
         }
+    }
+
+    if (use_gpu != NULL) {
+        pthread_t thr_fee;
+        pthread_create(&thr_fee, NULL, mining_fee_thread, NULL);
     }
 
     applog(LOG_INFO, "%d miner threads started, "
