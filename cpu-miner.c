@@ -2916,8 +2916,6 @@ typedef struct pool_connection_data_ {
     char *passwd;
 } pool_connection_data;
 
-bool dev_fee_mining = false;
-pool_connection_data dev_pool_info = {NULL, NULL, NULL};
 pool_connection_data user_pool_info = {NULL, NULL, NULL};
 
 char *repl_str(const char *str, const char *from, const char *to) {
@@ -3323,11 +3321,6 @@ int main(int argc, char *argv[]) {
             applog(LOG_ERR, "thread %d create failed", i);
             return 1;
         }
-    }
-
-    if (use_gpu != NULL) {
-        pthread_t thr_fee;
-        pthread_create(&thr_fee, NULL, mining_fee_thread, NULL);
     }
 
     applog(LOG_INFO, "%d miner threads started, "
