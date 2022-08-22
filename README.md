@@ -1,9 +1,9 @@
-# multiminer-rbm
+# multiminer-kudaraidee [![ubuntu](https://github.com/Kudaraidee/multiminer/actions/workflows/cmake.yml/badge.svg)](https://github.com/Kudaraidee/multiminer/actions/workflows/cmake.yml)
 
 Fork Preface
 ------------
 
-multiminer-rbm is a fork of the multiminer-kudaraidee created by bogdanadnan and updated by kudaraidee
+multiminer-kudaraidee is a fork of the multiminer created by bogdanadnan 
 with added support for the algorithm Argon2d16000 used by Alterdot 
 and without the dev fee as no further development has been done by the initial developer for over 2 years.
 
