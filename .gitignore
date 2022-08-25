@@ -4,3 +4,5 @@
 
 .idea
 cmake-build-debug
+*\build
+*\build_vs
