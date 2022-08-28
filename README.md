@@ -89,10 +89,10 @@ Follow the tutorial on the page to update the system packages.
 4. Download the multiminer-kudaraidee source code and unzip it. Create a folder named build inside. Open a command prompt and navigate to the build folder. Before we can compile we need to make a few changes to the source code
    
 5.   Now go back to command prompt and make sure you are in the build folder created earlier.
-    ```sh
-    cmake .. -Wno-dev -DNO_CUDA=TRUE -G "MinGW Makefiles"
-    make 
-    ```
+```sh
+cmake .. -Wno-dev -DNO_CUDA=TRUE -G "MinGW Makefiles"
+make 
+```
 6. Your multiminer.exe file should be available in the build folder.
 
 Windows Building Process (CUDA)
