@@ -236,7 +236,6 @@ Also, if you have Nvidia cards, always use CUDA, it gives best performance.
 Supported Algorithms
 --------------------
 
-                          0x10        	ChainOX (CHOX)
                           allium        Garlicoin
                           anime         Animecoin
                           argon2        Argon2 coin (AR2)

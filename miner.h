@@ -492,7 +492,6 @@ uint32_t* get_stratum_job_ntime();
 
 enum algos {
         ALGO_NULL,
-        ALGO_0X10,        
         ALGO_ALLIUM,
         ALGO_ANIME,
         ALGO_ARGON2,
@@ -501,17 +500,13 @@ enum algos {
         ALGO_ARGON2D4096,
         ALGO_ARGON2D16000,
         ALGO_ARGON2AD,
-//        ALGO_AXIOM,
         ALGO_BASTION,
         ALGO_BLAKE,       
         ALGO_BLAKECOIN,   
-//        ALGO_BLAKE2B,
         ALGO_BLAKE2S,     
         ALGO_BMW,        
         ALGO_C11,         
         ALGO_CRYPTOLIGHT, 
-//        ALGO_CRYPTONIGHT,
-//        ALGO_CRYPTONIGHTV7,
         ALGO_DECRED,
         ALGO_DEEP,
         ALGO_DMD_GR,
@@ -577,26 +572,21 @@ enum algos {
 };
 static const char* const algo_names[] = {
         NULL,
-        "0x10",
         "allium",
         "anime",
         "argon2",
         "argon2d250",
         "argon2d500",
-		"argon2d4096",
-    "argon2d16000",
-		"argon2ad",
-//        "axiom",
+        "argon2d4096",
+        "argon2d16000",
+        "argon2ad",
         "bastion",
         "blake",
         "blakecoin",
-//        "blake2b",
         "blake2s",
         "bmw",
         "c11",
         "cryptolight",
-//        "cryptonight",
-//        "cryptonightv7",
         "decred",
         "deep",
         "dmd-gr",
@@ -730,7 +720,6 @@ static char const usage[] = "\
 Usage: " PACKAGE_NAME " [OPTIONS]\n\
 Options:\n\
   -a,	--algo=ALGO	specify the algorithm to use\n\
-			0x10          ChainOX (CHOX)\n\
 			allium        Garlicoin (GRLC)\n\
 			anime         Animecoin (ANI)\n\
 			argon2        Argon2 Coin (AR2)\n\
@@ -841,6 +830,7 @@ Options:\n\
 	--no-color	disable colored output\n\
   -D,	--debug	enable	debug output\n\
   -P,	--protocol-dump	verbose dump of protocol-level activities\n"
+
 #ifdef HAVE_SYSLOG_H
 "\
   -S,	--syslog	use system log for output messages\n"

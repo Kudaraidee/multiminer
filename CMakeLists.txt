@@ -192,9 +192,6 @@ set(SOURCE
         algo/whirlpool/whirlpool-4way.c
         algo/whirlpool/whirlpool.c
         algo/whirlpool/whirlpoolx.c
-        algo/x11/0x10-gate.c
-        algo/x11/0x10.c
-        algo/x11/0x10-4way.c
         algo/x11/x11-gate.c
         algo/x11/x11.c
         algo/x11/x11-4way.c

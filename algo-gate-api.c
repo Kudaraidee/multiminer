@@ -158,7 +158,6 @@ bool register_algo_gate( int algo, algo_gate_t *gate )
 
    switch (algo)
    {
-     case ALGO_0X10:	     register_0x10_algo         ( gate ); break;
      case ALGO_ALLIUM:       register_allium_algo       ( gate ); break;
      case ALGO_ANIME:        register_anime_algo        ( gate ); break;
      case ALGO_ARGON2:       register_argon2_algo       ( gate ); break;
